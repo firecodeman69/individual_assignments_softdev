@@ -7,6 +7,7 @@ public class Game {
         Game game = new Game();
         Player player1 = game.player1;
         Map map = new Map();
+        //String roomInfo = player1.getCurrentRoom().toString();
 
 
 
@@ -33,9 +34,7 @@ public class Game {
             //System.out.println(); // List new room description
             //String roomItemName = player1.currentRoom.roomItems.get(0).getName();
             //System.out.println(roomItemName);
-            if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
-            String navigationPrompt = player1.getCurrentRoom().toString() +
-                    "\n[Please pick a direction to go travel or Explore the room. (N, E, S, W)]";
+            String navigationPrompt = "[Please pick a direction to go travel or Explore the room. (N, E, S, W)]";
             System.out.println(navigationPrompt);// Prompt user for direction of travel
             //System.out.println(player1.currentRoom.roomItems.get(0).getName());
             command = game.playerInput.next();
@@ -43,9 +42,11 @@ public class Game {
                 if (player1.currentRoom.northRoom == 0) System.out.println("You cannot go that way. Please pick another direction.\n");
                 else {
                     player1.currentRoom.setAlreadyVisited(true);
+                    //player1.getCurrentRoom().toString()
                     //player1.currentRoom.hasItem();
                     player1.currentRoom = player1.currentRoom.setCurrentRoom(map.gameRooms, player1.currentRoom.northRoom);
                     System.out.println(player1.currentRoom.toString() + "\n");
+                    if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
                 }
             }
             else if (command.equalsIgnoreCase("E")) {
@@ -54,6 +55,7 @@ public class Game {
                     player1.currentRoom.setAlreadyVisited(true);
                     player1.currentRoom = player1.currentRoom.setCurrentRoom(map.gameRooms, player1.currentRoom.eastRoom);
                     System.out.println(player1.currentRoom.getRoomDescription() + "\n");
+                    if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
                 }
             }
             else if (command.equalsIgnoreCase("S")) {
@@ -62,6 +64,7 @@ public class Game {
                     player1.currentRoom.setAlreadyVisited(true);
                     player1.currentRoom = player1.currentRoom.setCurrentRoom(map.gameRooms, player1.currentRoom.southRoom);
                     System.out.println(player1.currentRoom.getRoomDescription() + "\n");
+                    if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
                 }
             }
             else if (command.equalsIgnoreCase("W")) {
@@ -70,14 +73,15 @@ public class Game {
                     player1.currentRoom.setAlreadyVisited(true);
                     player1.currentRoom = player1.currentRoom.setCurrentRoom(map.gameRooms, player1.currentRoom.westRoom);
                     System.out.println(player1.currentRoom.getRoomDescription() + "\n");
+                    if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
                 }
             }
             else if (command.equalsIgnoreCase("Explore")) {
                 if (player1.currentRoom.roomItems.size() > 0) System.out.println(player1.currentRoom.roomItems.get(0).toString());
                 else System.out.println("You don't see any items in the room with you.");
-                    //player1.currentRoom.getRoomItems();
+                //player1.currentRoom.getRoomItems();
             }
-            else if (player1.currentRoom.canHaveItem) {
+            else if (player1.currentRoom.canHaveItem && player1.currentRoom.roomItems.size() > 0) {
                 if (command.equalsIgnoreCase(("pickup" + player1.currentRoom.roomItems.get(0).getName()))) {
                     player1.inventory.add(player1.currentRoom.roomItems.get(0));
                     player1.currentRoom.roomItems.remove(0);
@@ -87,17 +91,17 @@ public class Game {
 //                }
                 }
             }
-            else if (command.equalsIgnoreCase("Inventory")) {
-                if (player1.inventory.size() > 0) {
-//                    for (Item item : player1.inventory) {
-//                        System.out.println(item.getName());
-//                    }
-                    System.out.println(player1.inventory.size());
-                    //player1.showInventory();
-                }
+            else if (command.equalsIgnoreCase("Inventory") && player1.inventory.size() > 0) {
+                System.out.println(player1.showInventory());
+            }
+            else if (command.equalsIgnoreCase("CurrentRoom")) {
+                if (player1.inventory.size() > 0) System.out.println(player1.getCurrentRoom().toString());
                 else {
-                    System.out.println("You have no items in your inventory.");
+                    System.out.println("You do not have any items in your inventory.");
                 }
+            }
+            else if (command.equalsIgnoreCase("helpmenu")) {
+                System.out.println(player1.helpMenu());
             }
             else if (command.equalsIgnoreCase("QUIT")) {
                 player1.setKeepPlaying(false);
@@ -117,7 +121,7 @@ public class Game {
 
     public Game() {
         player1 = new Player();
-        this.playerInput = new Scanner(System.in);
+        this.playerInput = new Scanner(System.in);//.useDelimiter("\\s+");
     }
 
     public void newGame() {
@@ -130,6 +134,8 @@ public class Game {
                 "\nYou can enter QUIT at anytime to quit the game.\nType helpmenu for a list of commands.\n\n" +
                 "                                              END                                              \n" +
                 "_______________________________________________________________________________________________\n", player1.getPlayerName());
+
+        System.out.println(player1.getCurrentRoom().toString());
     }
 
 //    public void loadGame() {
@@ -146,13 +152,13 @@ public class Game {
 //                "\n\n", player1.getPlayerName());
 //    }
 
-    public Player getPlayer1() {
-        return this.player1;
-    }
+//    public Player getPlayer1() {
+//        return this.player1;
+//    }
 
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
-    }
+//    public void setPlayer1(Player player1) {
+//        this.player1 = player1;
+//    }
 
 //    public Map getMap () {
 //        return this.map;

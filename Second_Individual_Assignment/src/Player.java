@@ -8,7 +8,7 @@ public class Player {
 
     public Map map;
 
-    public ArrayList<Item> inventory = new ArrayList<>();
+    public ArrayList<Item> inventory;
 
 
 
@@ -24,17 +24,18 @@ public class Player {
 //        if (currentRoom.roomItems.size() > 0) {
 //            System.out.println(currentRoom);
 //        }
-            System.out.println("New player template created.\n");
+        this.inventory = new ArrayList<>();
+        System.out.println("New player template created.\n");
     }
 
-    public void loadPlayer(String playerName, Room currentRoom, Map map, ArrayList<Item> inventory) {
-        this.keepPlaying = true;
-        this.playerName = playerName;
-        this.currentRoom = currentRoom;
-        this.map = map;
-        this.inventory = inventory;
-        System.out.println("Player loaded successfully.");
-    }
+//    public void loadPlayer(String playerName, Room currentRoom, Map map, ArrayList<Item> inventory) {
+//        this.keepPlaying = true;
+//        this.playerName = playerName;
+//        this.currentRoom = currentRoom;
+//        this.map = map;
+//        this.inventory = inventory;
+//        System.out.println("Player loaded successfully.");
+//    }
 
 
 //    public int getPlayerHealth() {
@@ -66,24 +67,25 @@ public class Player {
         return this.currentRoom;
     }
 
-    public void setCurrentRoom(Room newRoom) {
-        this.currentRoom = newRoom;
-    }
+//    public void setCurrentRoom(Room newRoom) {
+//        this.currentRoom = newRoom;
+//    }
 
-    public void addItem(Item item) {
-        this.inventory.add(item);
-    }
+//    public void addItem(Item item) {
+//        this.inventory.add(item);
+//    }
 
-    public void showInventory() {
-        System.out.println(inventory.size());
+    public String showInventory() {
+        //print out item AL to the console
         if (inventory.size() > 0) {
-            for (int i = 0; i < inventory.size(); i++) {
-                System.out.println(inventory.get(i).toString());
+            for (Item item : inventory) {
+                return item.toString();
             }
         }
         else {
-            System.out.println("You don't have any items in your inventory.");
+            return "You don't have any items in your inventory.";
         }
+        return null;
     }
 
 //    public  void getCurrentRoom(Room currentRoom) {
@@ -100,7 +102,31 @@ public class Player {
         }
     }
 
-    public void addItemToInventory(Item item) {
-        this.inventory.add(item);
+    public String helpMenu() {
+        return "N: Allows the player to move north (if there is a room available).\n" +
+                "E: Allows the player to move east (if there is a room available).\n" +
+                "S: Allows the player to move south (if there is a room available).\n" +
+                "W: Allows the player to move west (if there is a room available).\n" +
+                "Explore: Check a room for items.\n" +
+                "Pickup{itemname}: Pick up an item from a room, and add it to your inventory.\n" +
+                "Inventory: List all of the current items in your inventory.\n" +
+                "CurrentRoom: List the current room and the exits for that room.\n" +
+                "Quit: I hope you never want to, but this is your way out of the game if you wish.\n";
+
+//        """
+//                N: Allows the player to move north (if there is a room available).
+//                E: Allows the player to move east (if there is a room available).
+//                S: Allows the player to move south (if there is a room available).
+//                W: Allows the player to move west (if there is a room available).
+//                Explore: Check a room for items.
+//                Pickup{itemname}: Pick up an item from a room, and add it to your inventory.
+//                Inventory: List all of the current items in your inventory.
+//                CurrentRoom: List the current room and the exits for that room.
+//                Quit: I hope you never want to, but this is your way out of the game if you wish.
+//                """;
     }
+
+//    public void addItemToInventory(Item item) {
+//        this.inventory.add(item);
+//    }
 }
