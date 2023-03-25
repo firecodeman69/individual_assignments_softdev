@@ -113,15 +113,15 @@ public class Game {
                 System.out.println("Item dropped.");
             }
             else if (command.equalsIgnoreCase("helpmenu")) {
-                System.out.println("N: Allows the player to move north (if there is a room available).\n" +
-                        "E: Allows the player to move east (if there is a room available).\n" +
-                        "S: Allows the player to move south (if there is a room available).\n" +
-                        "W: Allows the player to move west (if there is a room available).\n" +
-                        "Explore: Check a room for items.\n" +
-                        "Pickup{itemname}: Pick up an item from a room, and add it to your inventory.\n" +
-                        "Inventory: List all of the current items in your inventory.\n" +
-                        "CurrentRoom: List the current room and the exits for that room.\n" +
-                        "Quit: I hope you never want to, but this is your way out of the game if you wish.\n");;
+                System.out.println("[N: Allows the player to move north (if there is a room available).]\n" +
+                        "[E: Allows the player to move east (if there is a room available).]\n" +
+                        "[S: Allows the player to move south (if there is a room available).]\n" +
+                        "[W: Allows the player to move west (if there is a room available).]\n" +
+                        "[Explore: Check a room for items.]\n" +
+                        "[Pickup{itemname}: Pick up an item from a room, and add it to your inventory.]\n" +
+                        "[Inventory: List all of the current items in your inventory.]\n" +
+                        "[CurrentRoom: List the current room and the exits for that room.]\n" +
+                        "[Quit: I hope you never want to, but this is your way out of the game if you wish.]\n");;
             }
             else if (command.equalsIgnoreCase("QUIT")) {
                 player1.setKeepPlaying(false);
