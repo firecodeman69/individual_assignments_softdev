@@ -91,8 +91,16 @@ public class Game {
 //                }
                 }
             }
-            else if (command.equalsIgnoreCase("Inventory") && player1.inventory.size() > 0) {
-                System.out.println(player1.showInventory());
+            else if (command.equalsIgnoreCase("Inventory")) {
+                if (player1.inventory.size() >= 1) {
+                    //player1.showInventory(player1.inventory);
+                    for (Item item : player1.inventory) {
+                        System.out.println(item);
+                    }
+                }
+                else {
+                    System.out.println("You don't have any items in your inventory.");
+                }
             }
             else if (command.equalsIgnoreCase("CurrentRoom")) {
                 if (player1.inventory.size() > 0) System.out.println(player1.getCurrentRoom().toString());
@@ -100,8 +108,20 @@ public class Game {
                     System.out.println("You do not have any items in your inventory.");
                 }
             }
+            else if (command.equalsIgnoreCase(("drop" + player1.inventory.get(0).getName())) && player1.hasItem()) {
+                player1.dropItem();
+                System.out.println("Item dropped.");
+            }
             else if (command.equalsIgnoreCase("helpmenu")) {
-                System.out.println(player1.helpMenu());
+                System.out.println("N: Allows the player to move north (if there is a room available).\n" +
+                        "E: Allows the player to move east (if there is a room available).\n" +
+                        "S: Allows the player to move south (if there is a room available).\n" +
+                        "W: Allows the player to move west (if there is a room available).\n" +
+                        "Explore: Check a room for items.\n" +
+                        "Pickup{itemname}: Pick up an item from a room, and add it to your inventory.\n" +
+                        "Inventory: List all of the current items in your inventory.\n" +
+                        "CurrentRoom: List the current room and the exits for that room.\n" +
+                        "Quit: I hope you never want to, but this is your way out of the game if you wish.\n");;
             }
             else if (command.equalsIgnoreCase("QUIT")) {
                 player1.setKeepPlaying(false);

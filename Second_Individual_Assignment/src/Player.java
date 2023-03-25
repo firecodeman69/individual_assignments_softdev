@@ -67,6 +67,15 @@ public class Player {
         return this.currentRoom;
     }
 
+    public boolean hasItem() {
+        if (this.inventory.size() > 0)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 //    public void setCurrentRoom(Room newRoom) {
 //        this.currentRoom = newRoom;
 //    }
@@ -75,18 +84,17 @@ public class Player {
 //        this.inventory.add(item);
 //    }
 
-    public String showInventory() {
-        //print out item AL to the console
-        if (inventory.size() > 0) {
-            for (Item item : inventory) {
-                return item.toString();
-            }
-        }
-        else {
-            return "You don't have any items in your inventory.";
-        }
-        return null;
-    }
+//    public void showInventory(ArrayList<Item> itemsArrayList) {
+//        //print out item AL to the console
+//        if (itemsArrayList.size() > 0) {
+//            for (int i = 0; i < itemsArrayList.size(); i++) {
+//                return
+//            }
+//        }
+//        else {
+//            System.out.println("You don't have any items in your inventory.");
+//        }
+//    }
 
 //    public  void getCurrentRoom(Room currentRoom) {
 //        System.out.println("Your are currently in room number " + currentRoom);
@@ -102,16 +110,20 @@ public class Player {
         }
     }
 
-    public String helpMenu() {
-        return "N: Allows the player to move north (if there is a room available).\n" +
-                "E: Allows the player to move east (if there is a room available).\n" +
-                "S: Allows the player to move south (if there is a room available).\n" +
-                "W: Allows the player to move west (if there is a room available).\n" +
-                "Explore: Check a room for items.\n" +
-                "Pickup{itemname}: Pick up an item from a room, and add it to your inventory.\n" +
-                "Inventory: List all of the current items in your inventory.\n" +
-                "CurrentRoom: List the current room and the exits for that room.\n" +
-                "Quit: I hope you never want to, but this is your way out of the game if you wish.\n";
+    public void dropItem() {
+        this.currentRoom.roomItems.add(this.inventory.get(0));
+    }
+
+//    public String helpMenu() {
+//        return  ("N: Allows the player to move north (if there is a room available).\n" +
+//                "E: Allows the player to move east (if there is a room available).\n" +
+//                "S: Allows the player to move south (if there is a room available).\n" +
+//                "W: Allows the player to move west (if there is a room available).\n" +
+//                "Explore: Check a room for items.\n" +
+//                "Pickup{itemname}: Pick up an item from a room, and add it to your inventory.\n" +
+//                "Inventory: List all of the current items in your inventory.\n" +
+//                "CurrentRoom: List the current room and the exits for that room.\n" +
+//                "Quit: I hope you never want to, but this is your way out of the game if you wish.\n");
 
 //        """
 //                N: Allows the player to move north (if there is a room available).
@@ -124,7 +136,7 @@ public class Player {
 //                CurrentRoom: List the current room and the exits for that room.
 //                Quit: I hope you never want to, but this is your way out of the game if you wish.
 //                """;
-    }
+    //}
 
 //    public void addItemToInventory(Item item) {
 //        this.inventory.add(item);
