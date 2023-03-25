@@ -108,6 +108,10 @@ public class Player {
 //        System.out.println("Your are currently in room number " + currentRoom);
 //    }
 
+    public Room setCurrentRoom(ArrayList<Room> roomAL, int roomDirection) {
+        return roomAL.get(roomDirection - 1);
+    }
+
     public void addRandomItemToRoom() {
         for (Room r: map.gameRooms) {
             if (r.getCanHaveItem() && map.allItems.size() > 0) {
@@ -131,7 +135,9 @@ public class Player {
     public void dropItem(String name) {
         for(Item i: this.inventory) {
             if (i.getName().equalsIgnoreCase(name)) {
+                this.currentRoom.roomItems.add(i);
                 this.inventory.remove(i);
+                break;
             }
             else {
                 System.err.println("You do not have that item in your inventory.");

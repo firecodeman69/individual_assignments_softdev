@@ -1,10 +1,10 @@
 public class Puzzle {
-    private final int ID;
-    private final String DESCRIPTION;
-    private final String SOLUTION;
-    private final int ATTEMPTS;
+    public final int ID;
+    public final String DESCRIPTION;
+    public final String SOLUTION;
+    public final int ATTEMPTS;
 
-    private final String HINT;
+    public final String HINT;
     public boolean isSolved;
 
     public Puzzle(int ID, String description, String solution, int attempts, String hint) {
@@ -26,6 +26,11 @@ public class Puzzle {
 
     public void setIsSolved(boolean isSolved) {
         this.isSolved = isSolved;
+    }
+
+    public boolean solvePuzzle(String input){
+        if (this.SOLUTION.equalsIgnoreCase(input)) {return true;}
+        else {return false;}
     }
 
     public String toString() {

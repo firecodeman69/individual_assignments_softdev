@@ -94,10 +94,10 @@ public class Map {
 
             while (sc.hasNextLine()) {
                 for (int i = 0; i < 2; i++) {
-                    puzzle = new Puzzle(sc.nextInt() //PuzzleId
+                    puzzle = new Puzzle(Integer.parseInt(sc.nextLine()) //PuzzleId
                             , sc.nextLine() //Description
                             , sc.nextLine() //Solution
-                            , sc.nextInt() //Attempts Allowed
+                            , Integer.parseInt(sc.nextLine()) //Attempts Allowed
                             , sc.nextLine()); //Hints
                     puzzleAL.add(puzzle);
                     System.out.println(puzzle);
@@ -115,7 +115,7 @@ public class Map {
             //nsee.printStackTrace();
             //System.out.println("No Such Element!");
         } finally {
-            //System.out.println("The map loading has been completed.\n");
+            System.out.println("The puzzle loading has been completed.\n");
         }
         this.allPuzzles = puzzleAL;
     }

@@ -9,8 +9,9 @@ public class Room {
     public int southRoom;
     public int westRoom;
     public ArrayList<Item> roomItems = new ArrayList<>();
-    public boolean canHaveItem;
-    public boolean canHavePuzzle;
+    public Puzzle roomPuzzle;
+    private boolean canHaveItem;
+    private boolean canHavePuzzle;
     //public Item roomItem;
 
     public Room(int roomNumber, String roomDescription, boolean alreadyVisited, boolean canHaveItem, boolean canHavePuzzle, int northRoom, int eastRoom, int southRoom, int westRoom) {
@@ -40,10 +41,6 @@ public class Room {
 //    public void setRoomDescription(String roomDescription) {
 //        this.roomDescription = roomDescription;
 //    }
-
-    public Room setCurrentRoom(ArrayList<Room> roomAL, int roomDirection) {
-        return roomAL.get(roomDirection - 1);
-    }
 
     public boolean hasItem(String name) {
         for(Item i: this.roomItems) {
@@ -78,6 +75,18 @@ public class Room {
         else return false;
     }
 
+    public boolean hasPuzzle() {
+            return this.roomPuzzle != null;
+    }
+
+//    public void startPuzzle() {
+//        while (!this.roomPuzzle.isSolved) {
+//            for (int i = 0; i < this.roomPuzzle.ATTEMPTS; i++) {
+//                System.out.println(this.roomPuzzle.DESCRIPTION);
+//            }
+//        }
+//    }
+
     public void setAlreadyVisited(boolean alreadyVisited) {
         this.alreadyVisited = alreadyVisited;
     }
@@ -100,6 +109,15 @@ public class Room {
     public void setRoomItems(Item roomItem) {
         Map map = new Map();
         this.roomItems = map.allItems;
+    }
+
+    public void removeItem(String name) {
+        for (Item i: roomItems) {
+            if (i.getName().equalsIgnoreCase(name)) {
+                roomItems.remove(i);
+                break;
+            }
+        }
     }
 
 
