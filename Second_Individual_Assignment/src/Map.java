@@ -15,7 +15,7 @@ public class Map {
         ArrayList<Room> roomAL = new ArrayList<>();
         try {
             sc = new Scanner(new File("map.txt"));
-            System.out.println("Loading in your map. Please standby.");
+            //System.out.println("Loading in your map. Please standby.");
 
             while (sc.hasNextLine()) {
                 for (int i = 0; i < 7; i++) {
@@ -43,7 +43,7 @@ public class Map {
             //nsee.printStackTrace();
             //System.out.println("No Such Element!");
         } finally {
-            System.out.println("The map loading has been completed.\n");
+            //System.out.println("The map loading has been completed.\n");
         }
         this.gameRooms = roomAL;
     }
@@ -54,7 +54,7 @@ public class Map {
         ArrayList<Item> allItems = new ArrayList<>();
         try {
             sc = new Scanner(new File("item.txt"));
-            System.out.println("Reading in items.");
+            //System.out.println("Reading in items.");
             for (int i = 0; i < 3; i++) {
                 {
                     item = new Item(sc.nextLine()
@@ -76,7 +76,7 @@ public class Map {
             //nsee.printStackTrace();
             //System.out.println("No Such Element!");
         } finally {
-            System.out.println("The item reading has been completed.\n");
+            //System.out.println("The item reading has been completed.\n");
 //            for (Item i: allItems) {
 //                System.out.println(i);
 //            }

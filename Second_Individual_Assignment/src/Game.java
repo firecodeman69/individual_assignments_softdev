@@ -11,7 +11,7 @@ public class Game {
 
 
 
-        System.out.println("Welcome! What would you like to do?\nEnter: NewGame or LoadGame\n");
+        System.out.println("Welcome! What would you like to do?\nEnter: NewGame or LoadGame");
         if (game.playerInput.next().equalsIgnoreCase("newgame")) {
             game.newGame();
             player1 = game.player1;

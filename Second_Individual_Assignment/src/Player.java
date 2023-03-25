@@ -18,9 +18,9 @@ public class Player {
         map.newItem();
         map.newRoom();
         this.currentRoom = map.gameRooms.get(0);
-        System.out.println("Randomly adding items to rooms.");
+        //System.out.println("Randomly adding items to rooms.");
         addRandomItemToRoom();
-        System.out.println("Adding items to rooms completed.");
+        //System.out.println("Adding items to rooms completed.");
 //        if (currentRoom.roomItems.size() > 0) {
 //            System.out.println(currentRoom);
 //        }
