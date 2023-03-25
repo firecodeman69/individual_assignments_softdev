@@ -7,6 +7,7 @@ public class Game {
         Game game = new Game();
         Player player1 = game.player1;
         Map map = new Map();
+        String navigationPrompt = "[Please pick a direction to go travel or Explore the room. (N, E, S, W)]";
         //String roomInfo = player1.getCurrentRoom().toString();
 
 
@@ -16,6 +17,7 @@ public class Game {
             game.newGame();
             player1 = game.player1;
             map = player1.map;
+            ArrayList<Room> gameRooms = map.gameRooms;
             //player1.currentRoom.addRandomItemToRoom();
         }
         else if (game.playerInput.next().equalsIgnoreCase("loadgame")) {
@@ -30,87 +32,86 @@ public class Game {
         //System.out.println(room.westRoom + " " + room.eastRoom);
 
         while (player1.getKeepPlaying()) {
-            String command; //Direction chosen by the player
-            //System.out.println(); // List new room description
-            //String roomItemName = player1.currentRoom.roomItems.get(0).getName();
-            //System.out.println(roomItemName);
-            String navigationPrompt = "[Please pick a direction to go travel or Explore the room. (N, E, S, W)]";
             System.out.println(navigationPrompt);// Prompt user for direction of travel
-            //System.out.println(player1.currentRoom.roomItems.get(0).getName());
-            command = game.playerInput.next();
-            if (command.equalsIgnoreCase("N")) {
-                if (player1.currentRoom.northRoom == 0) System.out.println("You cannot go that way. Please pick another direction.\n");
+            String command = game.playerInput.nextLine().toLowerCase(); //Direction chosen by the player
+            String[] spCommand = command.split(" ");
+            Room currentRoom = player1.currentRoom;
+            //int roomId = currentRoom.getRoomNumber();
+
+            if (spCommand[0].equalsIgnoreCase("N")) {
+                if (currentRoom.northRoom == 0) System.out.println("You cannot go that way. Please pick another direction.\n");
                 else {
-                    player1.currentRoom.setAlreadyVisited(true);
-                    //player1.getCurrentRoom().toString()
-                    //player1.currentRoom.hasItem();
-                    player1.currentRoom = player1.currentRoom.setCurrentRoom(map.gameRooms, player1.currentRoom.northRoom);
-                    System.out.println(player1.currentRoom.toString() + "\n");
+                    currentRoom = currentRoom.setCurrentRoom(map.gameRooms, currentRoom.southRoom);
+                    //roomId = currentRoom.getRoomNumber();
+                    System.out.println(currentRoom.toString() + "\n");
                     if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
+                    currentRoom.setAlreadyVisited(true);
                 }
             }
-            else if (command.equalsIgnoreCase("E")) {
-                if (player1.currentRoom.eastRoom == 0) System.out.println("You cannot go that way. Please pick another direction.");
+            else if (spCommand[0].equalsIgnoreCase("E")) {
+                if (currentRoom.eastRoom == 0) System.out.println("You cannot go that way. Please pick another direction.");
                 else {
-                    player1.currentRoom.setAlreadyVisited(true);
-                    player1.currentRoom = player1.currentRoom.setCurrentRoom(map.gameRooms, player1.currentRoom.eastRoom);
-                    System.out.println(player1.currentRoom.getRoomDescription() + "\n");
+                    currentRoom = currentRoom.setCurrentRoom(map.gameRooms, currentRoom.southRoom);
+                    //roomId = currentRoom.getRoomNumber();
+                    System.out.println(currentRoom.toString() + "\n");
                     if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
+                    currentRoom.setAlreadyVisited(true);
                 }
             }
-            else if (command.equalsIgnoreCase("S")) {
-                if (player1.currentRoom.southRoom == 0) System.out.println("You cannot go that way. Please pick another direction.");
+            else if (spCommand[0].equalsIgnoreCase("S")) {
+                if (currentRoom.southRoom == 0) System.out.println("You cannot go that way. Please pick another direction.");
                 else {
-                    player1.currentRoom.setAlreadyVisited(true);
-                    player1.currentRoom = player1.currentRoom.setCurrentRoom(map.gameRooms, player1.currentRoom.southRoom);
-                    System.out.println(player1.currentRoom.getRoomDescription() + "\n");
+                    currentRoom = currentRoom.setCurrentRoom(map.gameRooms, currentRoom.southRoom);
+                    //roomId = currentRoom.getRoomNumber();
+                    System.out.println(currentRoom.toString() + "\n");
                     if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
+                    currentRoom.setAlreadyVisited(true);
                 }
             }
-            else if (command.equalsIgnoreCase("W")) {
-                if (player1.currentRoom.westRoom == 0) System.out.println("You cannot go that way. Please pick another direction.");
+            else if (spCommand[0].equalsIgnoreCase("W")) {
+                if (currentRoom.westRoom == 0) System.out.println("You cannot go that way. Please pick another direction.");
                 else {
-                    player1.currentRoom.setAlreadyVisited(true);
-                    player1.currentRoom = player1.currentRoom.setCurrentRoom(map.gameRooms, player1.currentRoom.westRoom);
-                    System.out.println(player1.currentRoom.getRoomDescription() + "\n");
+                    currentRoom = currentRoom.setCurrentRoom(map.gameRooms, currentRoom.southRoom);
+                    //roomId = currentRoom.getRoomNumber();
+                    System.out.println(currentRoom.toString() + "\n");
                     if (player1.getCurrentRoom().getAlreadyVisited()) System.out.print("Hmmm this room looks familiar.\n");
+                    currentRoom.setAlreadyVisited(true);
                 }
             }
-            else if (command.equalsIgnoreCase("Explore")) {
-                if (player1.currentRoom.roomItems.size() > 0) System.out.println(player1.currentRoom.roomItems.get(0).toString());
+            else if (spCommand[0].equalsIgnoreCase("Explore")) {
+                if (currentRoom.roomItems.size() > 0) System.out.println(currentRoom.getItem(spCommand[1]));
                 else System.out.println("You don't see any items in the room with you.");
-                //player1.currentRoom.getRoomItems();
+                //currentRoom.getRoomItems();
             }
-            else if (player1.currentRoom.canHaveItem && player1.currentRoom.roomItems.size() > 0) {
-                if (command.equalsIgnoreCase(("pickup" + player1.currentRoom.roomItems.get(0).getName()))) {
-                    player1.inventory.add(player1.currentRoom.roomItems.get(0));
-                    player1.currentRoom.roomItems.remove(0);
-                    //System.out.println("pickup");
-//                for (Item i: player1.inventory) {
-//                    System.out.println(i);
+            else if (spCommand[0].equalsIgnoreCase("pickup") && currentRoom.hasItem(spCommand[1])) {
+                if (currentRoom.hasItem(spCommand[1])) {
+                    player1.inventory.add(currentRoom.getItem(spCommand[1]));
+                    //System.out.println(currentRoom.roomItems.get(0).getName() + " has been picked up from the room and successfully added to the player inventory.");
+                    currentRoom.roomItems.remove(0);
 //                }
                 }
             }
-            else if (command.equalsIgnoreCase("Inventory")) {
+            else if (spCommand[0].equalsIgnoreCase("Inventory")) {
                 if (player1.inventory.size() >= 1) {
                     //player1.showInventory(player1.inventory);
                     for (Item item : player1.inventory) {
-                        System.out.println(item);
+                        System.out.println(item.getName());
                     }
                 }
                 else {
                     System.out.println("You don't have any items in your inventory.");
                 }
             }
-            else if (command.equalsIgnoreCase("CurrentRoom")) {
-                if (player1.inventory.size() > 0) System.out.println(player1.getCurrentRoom().toString());
-                else {
-                    System.out.println("You do not have any items in your inventory.");
-                }
+            else if (spCommand[0].equalsIgnoreCase("CurrentRoom")) {
+                System.out.println(player1.currentRoom);
             }
-            else if (command.equalsIgnoreCase(("drop" + player1.inventory.get(0).getName())) && player1.hasItem()) {
-                player1.dropItem();
+            else if (spCommand[0].equalsIgnoreCase("drop") && player1.hasItem(spCommand[1])) {
+                player1.dropItem(spCommand[1]);
                 System.out.println("Item dropped.");
+            }
+            else if (spCommand[0].equalsIgnoreCase("inspect") && player1.hasItem(spCommand[1])) {
+                System.out.println("Inspecting");
+                System.out.println(player1.inspectItem(spCommand[1]));
             }
             else if (command.equalsIgnoreCase("helpmenu")) {
                 System.out.println("[N: Allows the player to move north (if there is a room available).]\n" +

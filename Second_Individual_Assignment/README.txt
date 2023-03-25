@@ -51,10 +51,10 @@ Open puzzle.txt, and you will find a list of puzzles each with a puzzleId, isSol
 the puzzle solution, and the max number of attempts.
 
 PuzzleId
-IsSolved
 Description
 Solution
 NumOfAttempts
+Hints
 
 ------------------------------------------------GENERAL CONTROLS--------------------------------------------------
 For the controls of the game, you will be prompted to enter your player name.

@@ -16,10 +16,12 @@ public class Player {
         this.keepPlaying = true;
         this.map = new Map();
         map.newItem();
+        map.newPuzzle();
         map.newRoom();
         this.currentRoom = map.gameRooms.get(0);
         //System.out.println("Randomly adding items to rooms.");
         addRandomItemToRoom();
+        addRandomPuzzleToRoom();
         //System.out.println("Adding items to rooms completed.");
 //        if (currentRoom.roomItems.size() > 0) {
 //            System.out.println(currentRoom);
@@ -67,14 +69,20 @@ public class Player {
         return this.currentRoom;
     }
 
-    public boolean hasItem() {
-        if (this.inventory.size() > 0)
-        {
-            return true;
+    public boolean hasItem(String name) {
+        for(Item i: this.inventory) {
+            if(i.getName().equalsIgnoreCase(name)) return true;
         }
-        else {
-            return false;
-        }
+        return false;
+    }
+
+    public String inspectItem (String name) {
+            for (Item i: inventory) {
+                if (i.getName().equalsIgnoreCase(name)) {
+                    return i.getDescription();
+                }
+            }
+            return null;
     }
 //    public void setCurrentRoom(Room newRoom) {
 //        this.currentRoom = newRoom;
@@ -110,8 +118,25 @@ public class Player {
         }
     }
 
-    public void dropItem() {
-        this.currentRoom.roomItems.add(this.inventory.get(0));
+    public void addRandomPuzzleToRoom() {
+        for (Room r: map.gameRooms) {
+            if (r.getCanHavePuzzle() && map.allItems.size() > 0) {
+                int randNum = (int) (Math.random() * map.allItems.size());
+                r.roomItems.add(map.allItems.get(randNum));
+                map.allItems.remove(randNum);
+            }
+        }
+    }
+
+    public void dropItem(String name) {
+        for(Item i: this.inventory) {
+            if (i.getName().equalsIgnoreCase(name)) {
+                this.inventory.remove(i);
+            }
+            else {
+                System.err.println("You do not have that item in your inventory.");
+            }
+        }
     }
 
 //    public String helpMenu() {

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Room {
-    private final int ROOMNUMBER;
+    public final int ROOMNUMBER;
     private final String ROOMDESCRIPTION;
     public boolean alreadyVisited;
     public int northRoom;
@@ -10,22 +10,24 @@ public class Room {
     public int westRoom;
     public ArrayList<Item> roomItems = new ArrayList<>();
     public boolean canHaveItem;
+    public boolean canHavePuzzle;
     //public Item roomItem;
 
-    public Room(int roomNumber, String roomDescription, boolean alreadyVisited, boolean canHaveItem, int northRoom, int eastRoom, int southRoom, int westRoom) {
+    public Room(int roomNumber, String roomDescription, boolean alreadyVisited, boolean canHaveItem, boolean canHavePuzzle, int northRoom, int eastRoom, int southRoom, int westRoom) {
         this.ROOMNUMBER = roomNumber;
         this.ROOMDESCRIPTION = roomDescription;
         this.alreadyVisited = alreadyVisited;
         this.canHaveItem = canHaveItem;
+        this.canHavePuzzle = canHavePuzzle;
         this.northRoom = northRoom;
         this.eastRoom = eastRoom;
         this.southRoom = southRoom;
         this.westRoom = westRoom;
     }
 
-//    public int getRoomNumber() {
-//        return this.roomNumber;
-//    }
+    public int getRoomNumber() {
+        return this.ROOMNUMBER;
+    }
 
 //    public void setRoomNumber(int roomNumber) {
 //        this.roomNumber = roomNumber;
@@ -43,6 +45,20 @@ public class Room {
         return roomAL.get(roomDirection - 1);
     }
 
+    public boolean hasItem(String name) {
+        for(Item i: this.roomItems) {
+            if(i.getName().equalsIgnoreCase(name)) return true;
+        }
+        return false;
+    }
+
+    public Item getItem(String name) {
+        for(Item i: this.roomItems) {
+            if(i.getName().equalsIgnoreCase(name)) return i;
+        }
+        return null;
+    }
+
 //    public String printRoomAssociations() {
 //        for (Rooms r: roomsAL) {
 //            r.getRoomAssociations();
@@ -56,6 +72,11 @@ public class Room {
 //    public boolean getAlreadyVisited() {
 //        return this.alreadyVisited;
 //    }
+
+    public boolean getCanHavePuzzle() {
+        if (this.canHavePuzzle) return true;
+        else return false;
+    }
 
     public void setAlreadyVisited(boolean alreadyVisited) {
         this.alreadyVisited = alreadyVisited;
@@ -98,7 +119,7 @@ public class Room {
 //    }
 
     public String toString() {
-        return ("[You are in " + this.ROOMNUMBER + " "
+            return ("[" + this.ROOMNUMBER + " "
                 + this.ROOMDESCRIPTION + ": "
                 + this.northRoom + " is to the North, "
                 + this.eastRoom + " is to the East, "

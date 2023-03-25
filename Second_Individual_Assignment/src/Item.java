@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Item {
     private String name;
     private String description;
@@ -13,16 +11,20 @@ public class Item {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
-    public String Inspect() {
+//    public String Inspect() {
+//        return this.description;
+//    }
+
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+
+    public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String toString() {

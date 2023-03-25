@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Map {
     ArrayList<Room> gameRooms;
     ArrayList<Item> allItems;
+    ArrayList<Puzzle> allPuzzles;
 
     public void newRoom() {
         Room room;
@@ -15,20 +16,20 @@ public class Map {
         ArrayList<Room> roomAL = new ArrayList<>();
         try {
             sc = new Scanner(new File("map.txt"));
-            //System.out.println("Loading in your map. Please standby.");
 
             while (sc.hasNextLine()) {
                 for (int i = 0; i < 7; i++) {
-                    room = new Room(sc.nextInt()
-                            , sc.next()
-                            , sc.nextBoolean()
-                            , sc.nextBoolean()
-                            , sc.nextInt()
-                            , sc.nextInt()
-                            , sc.nextInt()
-                            , sc.nextInt());
+                    room = new Room(sc.nextInt() //RoomID
+                            , sc.next() //Room Name/Desc
+                            , sc.nextBoolean() //Has been visited
+                            , sc.nextBoolean() //Can have Item
+                            , sc.nextBoolean() //Can have Puzzle
+                            , sc.nextInt() //North RoomId
+                            , sc.nextInt() //East RoomId
+                            , sc.nextInt() //South RoomId
+                            , sc.nextInt()); //West RoomId
                     roomAL.add(room);
-                    //System.out.println(room);
+                    System.out.println(room);
                 }
                 //game.printRooms(roomAL);
             }//end while
@@ -82,5 +83,40 @@ public class Map {
 //            }
         }
         this.allItems = allItems;
+    }
+
+    public void newPuzzle() {
+        Puzzle puzzle;
+        Scanner sc;
+        ArrayList<Puzzle> puzzleAL = new ArrayList<>();
+        try {
+            sc = new Scanner(new File("puzzle.txt"));
+
+            while (sc.hasNextLine()) {
+                for (int i = 0; i < 2; i++) {
+                    puzzle = new Puzzle(sc.nextInt() //PuzzleId
+                            , sc.nextLine() //Description
+                            , sc.nextLine() //Solution
+                            , sc.nextInt() //Attempts Allowed
+                            , sc.nextLine()); //Hints
+                    puzzleAL.add(puzzle);
+                    System.out.println(puzzle);
+                }
+                //game.printRooms(roomAL);
+            }//end while
+            sc.close();
+        }//end try
+        catch (IOException ioe) {
+            ioe.printStackTrace();
+            System.out.println("IOException!" +
+                    "No file exists! " +
+                    "Please make sure that the file exists and try again.");
+        } catch (NoSuchElementException nsee) {
+            //nsee.printStackTrace();
+            //System.out.println("No Such Element!");
+        } finally {
+            //System.out.println("The map loading has been completed.\n");
+        }
+        this.allPuzzles = puzzleAL;
     }
 }
