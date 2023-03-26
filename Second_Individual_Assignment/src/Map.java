@@ -16,7 +16,6 @@ public class Map {
         ArrayList<Room> roomAL = new ArrayList<>();
         try {
             sc = new Scanner(new File("map.txt"));
-
             while (sc.hasNextLine()) {
                 for (int i = 0; i < 7; i++) {
                     room = new Room(sc.nextInt() //RoomID
@@ -29,9 +28,7 @@ public class Map {
                             , sc.nextInt() //South RoomId
                             , sc.nextInt()); //West RoomId
                     roomAL.add(room);
-                    System.out.println(room);
                 }
-                //game.printRooms(roomAL);
             }//end while
             sc.close();
         }//end try
@@ -40,11 +37,7 @@ public class Map {
             System.out.println("IOException!" +
                     "No file exists! " +
                     "Please make sure that the file exists and try again.");
-        } catch (NoSuchElementException nsee) {
-            //nsee.printStackTrace();
-            //System.out.println("No Such Element!");
-        } finally {
-            //System.out.println("The map loading has been completed.\n");
+        } catch (NoSuchElementException ignored) {
         }
         this.gameRooms = roomAL;
     }
@@ -55,16 +48,13 @@ public class Map {
         ArrayList<Item> allItems = new ArrayList<>();
         try {
             sc = new Scanner(new File("item.txt"));
-            //System.out.println("Reading in items.");
             for (int i = 0; i < 3; i++) {
                 {
-                    item = new Item(sc.nextLine()
-                            , sc.nextLine());
+                    item = new Item(sc.nextLine() //Item name
+                            , sc.nextLine()); //Item description
 
                     allItems.add(item);
-                    //System.out.println(item);
                 }
-                //game.printRooms(allItems);
             }//end while
             sc.close();
         }//end try
@@ -73,14 +63,7 @@ public class Map {
             System.out.println("IOException!" +
                     "No file exists! " +
                     "Please make sure that the file exists and try again.");
-        } catch (NoSuchElementException nsee) {
-            //nsee.printStackTrace();
-            //System.out.println("No Such Element!");
-        } finally {
-            //System.out.println("The item reading has been completed.\n");
-//            for (Item i: allItems) {
-//                System.out.println(i);
-//            }
+        } catch (NoSuchElementException ignored) {
         }
         this.allItems = allItems;
     }
@@ -100,9 +83,7 @@ public class Map {
                             , Integer.parseInt(sc.nextLine()) //Attempts Allowed
                             , sc.nextLine()); //Hints
                     puzzleAL.add(puzzle);
-                    System.out.println(puzzle);
                 }
-                //game.printRooms(roomAL);
             }//end while
             sc.close();
         }//end try
@@ -111,11 +92,7 @@ public class Map {
             System.out.println("IOException!" +
                     "No file exists! " +
                     "Please make sure that the file exists and try again.");
-        } catch (NoSuchElementException nsee) {
-            //nsee.printStackTrace();
-            //System.out.println("No Such Element!");
-        } finally {
-            System.out.println("The puzzle loading has been completed.\n");
+        } catch (NoSuchElementException ignored) {
         }
         this.allPuzzles = puzzleAL;
     }

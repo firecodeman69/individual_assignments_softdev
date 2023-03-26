@@ -37,14 +37,14 @@ public class Game {
             System.out.println(navigationPrompt);// Prompt user for direction of travel
             String command = game.playerInput.nextLine().toLowerCase(); //Direction chosen by the player
             String[] spCommand = command.split(" ");
-            for (int i = 0; i < spCommand.length; i++) {
-                System.out.println(spCommand[i]);
-            }
+//            for (int i = 0; i < spCommand.length; i++) {
+//                System.out.println(spCommand[i]);
+//            }
             //int roomId = currentRoom.getRoomNumber();
 
             if (spCommand[0].equalsIgnoreCase("N")) {
-                if (player1.currentRoom.northRoom == 0) System.out.println("You cannot go that way. Please pick another direction.\n");
-                else {
+                if (player1.currentRoom.northRoom == 0) { System.out.println("You cannot go that way. Please pick another direction.\n");}
+                if (player1.currentRoom.northRoom != 0) {
                     if (player1.currentRoom.hasPuzzle()) {
                         while (!player1.currentRoom.roomPuzzle.isSolved) {
                             for (int i = player1.currentRoom.roomPuzzle.ATTEMPTS; i > 0; i--) {
@@ -56,7 +56,6 @@ public class Game {
                                 else {
                                     System.out.println("Incorrect, please try again - " + i + " attempts remaining.");
                                 }
-
                             }
                         }
                     }
@@ -138,15 +137,7 @@ public class Game {
                 System.out.println(player1.inspectItem(spCommand[1]));
             }
             else if (command.equalsIgnoreCase("helpmenu")) {
-                System.out.println("[N: Allows the player to move north (if there is a room available).]\n" +
-                        "[E: Allows the player to move east (if there is a room available).]\n" +
-                        "[S: Allows the player to move south (if there is a room available).]\n" +
-                        "[W: Allows the player to move west (if there is a room available).]\n" +
-                        "[Explore: Check a room for items.]\n" +
-                        "[Pickup{itemname}: Pick up an item from a room, and add it to your inventory.]\n" +
-                        "[Inventory: List all of the current items in your inventory.]\n" +
-                        "[CurrentRoom: List the current room and the exits for that room.]\n" +
-                        "[Quit: I hope you never want to, but this is your way out of the game if you wish.]\n");;
+                System.out.println(game.helpMenu());
             }
             else if (command.equalsIgnoreCase("QUIT")) {
                 player1.setKeepPlaying(false);
@@ -212,4 +203,18 @@ public class Game {
 //    public void setMap (Map map) {
 //        this.map = map;
 //    }
+
+        public String helpMenu() {
+        return """
+                N: Allows the player to move north (if there is a room available).
+                E: Allows the player to move east (if there is a room available).
+                S: Allows the player to move south (if there is a room available).
+                W: Allows the player to move west (if there is a room available).
+                Explore: Check a room for items.
+                Pickup{itemname}: Pick up an item from a room, and add it to your inventory.
+                Inventory: List all of the current items in your inventory.
+                CurrentRoom: List the current room and the exits for that room.
+                Quit: I hope you never want to, but this is your way out of the game if you wish.
+                """;
+    }
 }

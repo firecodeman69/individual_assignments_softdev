@@ -19,13 +19,8 @@ public class Player {
         map.newPuzzle();
         map.newRoom();
         this.currentRoom = map.gameRooms.get(0);
-        //System.out.println("Randomly adding items to rooms.");
         addRandomItemToRoom();
         addRandomPuzzleToRoom();
-        //System.out.println("Adding items to rooms completed.");
-//        if (currentRoom.roomItems.size() > 0) {
-//            System.out.println(currentRoom);
-//        }
         this.inventory = new ArrayList<>();
         System.out.println("New player template created.\n");
     }
@@ -84,29 +79,6 @@ public class Player {
             }
             return null;
     }
-//    public void setCurrentRoom(Room newRoom) {
-//        this.currentRoom = newRoom;
-//    }
-
-//    public void addItem(Item item) {
-//        this.inventory.add(item);
-//    }
-
-//    public void showInventory(ArrayList<Item> itemsArrayList) {
-//        //print out item AL to the console
-//        if (itemsArrayList.size() > 0) {
-//            for (int i = 0; i < itemsArrayList.size(); i++) {
-//                return
-//            }
-//        }
-//        else {
-//            System.out.println("You don't have any items in your inventory.");
-//        }
-//    }
-
-//    public  void getCurrentRoom(Room currentRoom) {
-//        System.out.println("Your are currently in room number " + currentRoom);
-//    }
 
     public Room setCurrentRoom(ArrayList<Room> roomAL, int roomDirection) {
         return roomAL.get(roomDirection - 1);
@@ -124,10 +96,10 @@ public class Player {
 
     public void addRandomPuzzleToRoom() {
         for (Room r: map.gameRooms) {
-            if (r.getCanHavePuzzle() && map.allItems.size() > 0) {
-                int randNum = (int) (Math.random() * map.allItems.size());
-                r.roomItems.add(map.allItems.get(randNum));
-                map.allItems.remove(randNum);
+            if (r.getCanHavePuzzle() && map.allPuzzles.size() > 0) {
+                int randNum = (int) (Math.random() * map.allPuzzles.size());
+                r.roomPuzzle = map.allPuzzles.get(randNum);
+                map.allPuzzles.remove(randNum);
             }
         }
     }
@@ -139,37 +111,7 @@ public class Player {
                 this.inventory.remove(i);
                 break;
             }
-            else {
-                System.err.println("You do not have that item in your inventory.");
-            }
         }
+        System.err.println("You do not have that item in your inventory.");
     }
-
-//    public String helpMenu() {
-//        return  ("N: Allows the player to move north (if there is a room available).\n" +
-//                "E: Allows the player to move east (if there is a room available).\n" +
-//                "S: Allows the player to move south (if there is a room available).\n" +
-//                "W: Allows the player to move west (if there is a room available).\n" +
-//                "Explore: Check a room for items.\n" +
-//                "Pickup{itemname}: Pick up an item from a room, and add it to your inventory.\n" +
-//                "Inventory: List all of the current items in your inventory.\n" +
-//                "CurrentRoom: List the current room and the exits for that room.\n" +
-//                "Quit: I hope you never want to, but this is your way out of the game if you wish.\n");
-
-//        """
-//                N: Allows the player to move north (if there is a room available).
-//                E: Allows the player to move east (if there is a room available).
-//                S: Allows the player to move south (if there is a room available).
-//                W: Allows the player to move west (if there is a room available).
-//                Explore: Check a room for items.
-//                Pickup{itemname}: Pick up an item from a room, and add it to your inventory.
-//                Inventory: List all of the current items in your inventory.
-//                CurrentRoom: List the current room and the exits for that room.
-//                Quit: I hope you never want to, but this is your way out of the game if you wish.
-//                """;
-    //}
-
-//    public void addItemToInventory(Item item) {
-//        this.inventory.add(item);
-//    }
 }

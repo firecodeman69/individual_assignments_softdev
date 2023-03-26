@@ -30,17 +30,10 @@ public class Room {
         return this.ROOMNUMBER;
     }
 
-//    public void setRoomNumber(int roomNumber) {
-//        this.roomNumber = roomNumber;
-//    }
-
     public String getRoomDescription() {
         return this.ROOMDESCRIPTION;
     }
 
-//    public void setRoomDescription(String roomDescription) {
-//        this.roomDescription = roomDescription;
-//    }
 
     public boolean hasItem(String name) {
         for(Item i: this.roomItems) {
@@ -55,24 +48,8 @@ public class Room {
         }
         return null;
     }
-
-//    public String printRoomAssociations() {
-//        for (Rooms r: roomsAL) {
-//            r.getRoomAssociations();
-//        }
-//    }
-
-//    public void setRoomAssociations(int roomAssociations) {
-//        this.roomAssociations = roomAssociations;
-//    }//end setRoomAssociations
-
-//    public boolean getAlreadyVisited() {
-//        return this.alreadyVisited;
-//    }
-
     public boolean getCanHavePuzzle() {
-        if (this.canHavePuzzle) return true;
-        else return false;
+        return this.canHavePuzzle;
     }
 
     public boolean hasPuzzle() {
