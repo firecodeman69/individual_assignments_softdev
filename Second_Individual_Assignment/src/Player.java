@@ -55,6 +55,16 @@ public class Player {
         return this.keepPlaying;
     }
 
+    public boolean currentRoomHasPuzzle() {
+        if (this.currentRoom.roomPuzzle != null) return true;
+        else {return false;}
+    }
+
+    public boolean currentRoomPuzzleSolved() {
+        if (this.currentRoom.roomPuzzle.isSolved) return true;
+        else {return false;}
+    }
+
     public void setKeepPlaying(boolean keepPlaying) {
         this.keepPlaying = keepPlaying;
         if (!keepPlaying) System.out.println("Thank you for playing! See you later.");
@@ -80,8 +90,8 @@ public class Player {
             return null;
     }
 
-    public Room setCurrentRoom(ArrayList<Room> roomAL, int roomDirection) {
-        return roomAL.get(roomDirection - 1);
+    public void setCurrentRoom(ArrayList<Room> roomAL, int roomDirection) {
+        this.currentRoom = roomAL.get(roomDirection - 1);
     }
 
     public void addRandomItemToRoom() {
@@ -98,10 +108,36 @@ public class Player {
         for (Room r: map.gameRooms) {
             if (r.getCanHavePuzzle() && map.allPuzzles.size() > 0) {
                 int randNum = (int) (Math.random() * map.allPuzzles.size());
-                r.roomPuzzle = map.allPuzzles.get(randNum);
-                map.allPuzzles.remove(randNum);
+                r.setRoomPuzzle(map.getPuzzle(randNum));
+                map.removePossiblePuzzle(randNum);
             }
         }
+    }
+
+    public String showInventory() {
+        if (this.inventory != null) {
+        ArrayList<Item> itemAL = new ArrayList<>();
+            for (Item item : this.inventory) {
+                itemAL.add(item);
+            }
+            return itemAL.toString();
+        }
+        else {
+            return ("You don't have any items in your inventory.");
+        }
+    }
+
+    public Item getRoomItem(String name) {
+        for (Item i: this.currentRoom.roomItems) {
+            if(i.getName().equalsIgnoreCase(name)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public void addToInventory(Item item) {
+        this.inventory.add(item);
     }
 
     public void dropItem(String name) {
@@ -112,6 +148,26 @@ public class Player {
                 break;
             }
         }
-        System.err.println("You do not have that item in your inventory.");
+        //System.err.println("You do not have that item in your inventory.");
+    }
+
+    public void setVisited() {
+        this.currentRoom.setAlreadyVisited(true);
+    }
+
+    public int getNorthRoom() {
+        return this.currentRoom.northRoom;
+    }
+
+    public int getEastRoom() {
+        return this.currentRoom.eastRoom;
+    }
+
+    public int getSouthRoom() {
+        return this.currentRoom.southRoom;
+    }
+
+    public int getWestRoom() {
+        return this.currentRoom.northRoom;
     }
 }

@@ -24,6 +24,7 @@ public class Room {
         this.eastRoom = eastRoom;
         this.southRoom = southRoom;
         this.westRoom = westRoom;
+        this.roomPuzzle = null;
     }
 
     public int getRoomNumber() {
@@ -52,8 +53,12 @@ public class Room {
         return this.canHavePuzzle;
     }
 
-    public boolean hasPuzzle() {
-            return this.roomPuzzle != null;
+    public void setRoomPuzzle(Puzzle puzzle) {
+        this.roomPuzzle = puzzle;
+    }
+
+    public Puzzle getRoomPuzzle() {
+        return this.roomPuzzle;
     }
 
 //    public void startPuzzle() {

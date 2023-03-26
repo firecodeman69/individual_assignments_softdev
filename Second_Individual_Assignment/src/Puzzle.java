@@ -1,8 +1,10 @@
+import java.util.Scanner;
+
 public class Puzzle {
     public final int ID;
     public final String DESCRIPTION;
     public final String SOLUTION;
-    public final int ATTEMPTS;
+    public int attempts;
 
     public final String HINT;
     public boolean isSolved;
@@ -11,13 +13,13 @@ public class Puzzle {
         this.ID = ID;
         this.DESCRIPTION = description;
         this.SOLUTION = solution;
-        this.ATTEMPTS = attempts;
+        this.attempts = attempts;
         this.HINT = hint;
         this.isSolved = false;
     }
 
     public int getATTEMPTS() {
-        return this.ATTEMPTS;
+        return this.attempts;
     }
 
     public boolean getIsSolved() {
@@ -37,7 +39,7 @@ public class Puzzle {
         return "[" + this.ID + " " +
                 this.DESCRIPTION + " " +
                 this.SOLUTION + " " +
-                this.ATTEMPTS + " " +
+                this.attempts + " " +
                 this.HINT;
     }
 }

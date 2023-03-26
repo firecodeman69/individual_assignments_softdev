@@ -48,7 +48,7 @@ public class Map {
         ArrayList<Item> allItems = new ArrayList<>();
         try {
             sc = new Scanner(new File("item.txt"));
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 {
                     item = new Item(sc.nextLine() //Item name
                             , sc.nextLine()); //Item description
@@ -95,5 +95,13 @@ public class Map {
         } catch (NoSuchElementException ignored) {
         }
         this.allPuzzles = puzzleAL;
+    }
+
+    public Puzzle getPuzzle (int num) {
+        return this.allPuzzles.get(num);
+    }
+
+    public void removePossiblePuzzle (int num) {
+        this.allPuzzles.remove(num);
     }
 }
