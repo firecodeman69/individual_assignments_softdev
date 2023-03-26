@@ -37,18 +37,19 @@ public class Room {
 
 
     public boolean hasItem(String name) {
-        for(Item i: this.roomItems) {
-            if(i.getName().equalsIgnoreCase(name)) return true;
+        for (Item i : this.roomItems) {
+            if (i.getName().equalsIgnoreCase(name)) return true;
         }
         return false;
     }
 
     public Item getItem(String name) {
-        for(Item i: this.roomItems) {
-            if(i.getName().equalsIgnoreCase(name)) return i;
+        for (Item i : this.roomItems) {
+            if (i.getName().equalsIgnoreCase(name)) return i;
         }
         return null;
     }
+
     public boolean getCanHavePuzzle() {
         return this.canHavePuzzle;
     }
@@ -82,10 +83,7 @@ public class Room {
     }
 
     public String getRoomItems() {
-        for (Item i: this.roomItems) {
-            return i.toString();
-        }
-        return null;
+        return this.roomItems.toString();
     }
 
     public void setRoomItems(Item roomItem) {
@@ -94,7 +92,7 @@ public class Room {
     }
 
     public void removeItem(String name) {
-        for (Item i: roomItems) {
+        for (Item i : roomItems) {
             if (i.getName().equalsIgnoreCase(name)) {
                 roomItems.remove(i);
                 break;
@@ -119,7 +117,7 @@ public class Room {
 //    }
 
     public String toString() {
-            return ("[" + this.ROOMNUMBER + " "
+        return ("[" + this.ROOMNUMBER + " "
                 + this.ROOMDESCRIPTION + ": "
                 + this.northRoom + " is to the North, "
                 + this.eastRoom + " is to the East, "

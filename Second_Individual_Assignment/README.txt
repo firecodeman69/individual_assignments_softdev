@@ -1,4 +1,4 @@
-Hello! I hope that you are doing well so far today. This is my map navigator game. 
+Hello! I hope that you are doing well so far today. This is my collectable adventure game.
 
 In this program, you will create your own text game. The program reads in a "map.txt" and constructs a map, "item.txt" and constructs
 items, and "puzzle.txt" and constructs puzzles.
@@ -21,6 +21,14 @@ This field is a description of the room
 
 <alreadyVisited>
 This field is a boolean to keep up with whether or not a room has been visited.
+
+<canHaveItem>
+This is a boolean field that is used to keep track of the rooms that can possibly have items.
+This helps with room-item assignment.
+
+<canHavePuzzle>
+This is a boolean field that is used to keep track of the rooms that are able to have puzzles.
+This helps with room-puzzle assignment.
 
 <northRoom>
 <eastRoom>
@@ -59,6 +67,34 @@ Hints
 ------------------------------------------------GENERAL CONTROLS--------------------------------------------------
 For the controls of the game, you will be prompted to enter your player name.
 It must be all one word with no spaces - anything after a space will not make it into your name!
+
+|---------------------------------------|
+|            Table of Commands          |
+|---------------------------------------|
+|--------------Navigation---------------|
+|            N: Move North              |
+|            E: Move North              |
+|            S: Move North              |
+|            W: Move North              |
+|                                       |
+|-------------Within Rooms--------------|
+|       Explore: List Room Items        |
+|CurrentRoom: Lists current room details|
+|  Pickup {ItemName}: add to inventory  |
+| Drop {ItemName}: Remove from inventory|
+|                                       |
+|------------Item Interaction-----------|
+| Inspect {ItemName}: Return item desc. |
+| Inventory: List all items collected   |
+|                                       |
+|------------------Help-----------------|
+|HelpMenu: List all available commands  |
+|                                       |
+|------------Menu Options---------------|
+|NewGame: Start a brand new adventure!  |
+|LoadGame {SaveFileName}: Load adventure|
+|Quit: Leave the game - why though?     |
+|---------------------------------------|
 
 Upon beginning the game, you will find yourself greeted and starting off in the EntryWay. Use N, E, S, and W commands to navigate through your home.
 

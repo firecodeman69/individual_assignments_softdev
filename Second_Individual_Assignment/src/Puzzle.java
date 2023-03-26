@@ -30,9 +30,16 @@ public class Puzzle {
         this.isSolved = isSolved;
     }
 
-    public boolean solvePuzzle(String input){
-        if (this.SOLUTION.equalsIgnoreCase(input)) {return true;}
-        else {return false;}
+    public boolean solvePuzzle(String input) {
+        if (this.SOLUTION.equalsIgnoreCase(input)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void setAttempts(int attempts) {
+        this.attempts = attempts;
     }
 
     public String toString() {

@@ -97,11 +97,11 @@ public class Map {
         this.allPuzzles = puzzleAL;
     }
 
-    public Puzzle getPuzzle (int num) {
+    public Puzzle getPuzzle(int num) {
         return this.allPuzzles.get(num);
     }
 
-    public void removePossiblePuzzle (int num) {
+    public void removePossiblePuzzle(int num) {
         this.allPuzzles.remove(num);
     }
 }
