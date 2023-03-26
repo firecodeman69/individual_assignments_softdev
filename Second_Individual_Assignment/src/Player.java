@@ -170,4 +170,18 @@ public class Player {
     public int getWestRoom() {
         return this.currentRoom.northRoom;
     }
+
+    public String helpMenu() {
+        return """
+                N: Allows the player to move north (if there is a room available).
+                E: Allows the player to move east (if there is a room available).
+                S: Allows the player to move south (if there is a room available).
+                W: Allows the player to move west (if there is a room available).
+                Explore: Check a room for items.
+                Pickup{itemname}: Pick up an item from a room, and add it to your inventory.
+                Inventory: List all of the current items in your inventory.
+                CurrentRoom: List the current room and the exits for that room.
+                Quit: I hope you never want to, but this is your way out of the game if you wish.
+                """;
+    }
 }
