@@ -20,29 +20,12 @@ public class Player {
         map.newPuzzle();
         map.newRoom();
         this.currentRoom = map.gameRooms.get(0);
+        this.currentRoom.setAlreadyVisited(true);
         addRandomItemToRoom();
         addRandomPuzzleToRoom();
         this.inventory = new ArrayList<>();
         System.out.println("New player template created.\n");
     }
-
-//    public void loadPlayer(String playerName, Room currentRoom, Map map, ArrayList<Item> inventory) {
-//        this.keepPlaying = true;
-//        this.playerName = playerName;
-//        this.currentRoom = currentRoom;
-//        this.map = map;
-//        this.inventory = inventory;
-//        System.out.println("Player loaded successfully.");
-//    }
-
-
-//    public int getPlayerHealth() {
-//        return this.playerHealth;
-//    }
-//
-//    public void setPlayerHealth(int playerHealth) {
-//        this.playerHealth = playerHealth;
-//    }
 
     public String getPlayerName() {
         return this.playerName;
@@ -64,10 +47,7 @@ public class Player {
     }
 
     public boolean currentRoomPuzzleSolved() {
-        if (this.currentRoom.roomPuzzle.isSolved) return true;
-        else {
-            return false;
-        }
+        return this.currentRoom.roomPuzzle.isSolved;
     }
 
     public void setKeepPlaying(boolean keepPlaying) {
@@ -187,4 +167,38 @@ public class Player {
     public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }
+
+    public String helpMenu() {
+        return """
+                N: Allows the player to move north (if there is a room available).
+                E: Allows the player to move east (if there is a room available).
+                S: Allows the player to move south (if there is a room available).
+                W: Allows the player to move west (if there is a room available).
+                Explore: Check a room for items.
+                Pickup{itemname}: Pick up an item from a room, and add it to your inventory.
+                Inventory: List all of the current items in your inventory.
+                CurrentRoom: List the current room and the exits for that room.
+                Quit: I hope you never want to, but this is your way out of the game if you wish.
+                """;
+    }
+
+    /*********************************************Method Dump************************************
+    //    public void loadPlayer(String playerName, Room currentRoom, Map map, ArrayList<Item> inventory) {
+//        this.keepPlaying = true;
+//        this.playerName = playerName;
+//        this.currentRoom = currentRoom;
+//        this.map = map;
+//        this.inventory = inventory;
+//        System.out.println("Player loaded successfully.");
+//    }
+
+
+//    public int getPlayerHealth() {
+//        return this.playerHealth;
+//    }
+//
+//    public void setPlayerHealth(int playerHealth) {
+//        this.playerHealth = playerHealth;
+//    }
+     **********************************************************************************************/
 }

@@ -11,18 +11,6 @@ public class Item {
         return this.name;
     }
 
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-
-//    public String Inspect() {
-//        return this.description;
-//    }
-
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-
     public String getDescription() {
         return this.description;
     }
@@ -32,4 +20,17 @@ public class Item {
     }
 
 
+    /*************************************Method Dump*************************************
+        public void setName(String name) {
+        this.name = name;
+    }
+
+    public String Inspect() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+     *************************************************************************************/
 }

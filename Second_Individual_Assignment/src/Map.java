@@ -6,10 +6,11 @@ import java.util.Scanner;
 
 
 public class Map {
-    ArrayList<Room> gameRooms;
-    ArrayList<Item> allItems;
-    ArrayList<Puzzle> allPuzzles;
+    ArrayList<Room> gameRooms; //Store Room objects
+    ArrayList<Item> allItems; //Store Item objects
+    ArrayList<Puzzle> allPuzzles; //Store Puzzle objects
 
+    /************************************Room file reader*****************************/
     public void newRoom() {
         Room room;
         Scanner sc;
@@ -42,6 +43,8 @@ public class Map {
         this.gameRooms = roomAL;
     }
 
+    /************************************Item file reader*****************************/
+
     public void newItem() {
         Item item;
         Scanner sc;
@@ -68,6 +71,7 @@ public class Map {
         this.allItems = allItems;
     }
 
+    /************************************Puzzle file reader*****************************/
     public void newPuzzle() {
         Puzzle puzzle;
         Scanner sc;
@@ -97,11 +101,11 @@ public class Map {
         this.allPuzzles = puzzleAL;
     }
 
-    public Puzzle getPuzzle(int num) {
+    public Puzzle getPuzzle(int num) { //Return the loaded in puzzles
         return this.allPuzzles.get(num);
     }
 
-    public void removePossiblePuzzle(int num) {
+    public void removePossiblePuzzle(int num) { //Remove puzzles loaded in
         this.allPuzzles.remove(num);
     }
 }
