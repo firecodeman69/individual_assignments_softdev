@@ -41,7 +41,7 @@ public class Game {
             } //else {System.out.println(navigationPrompt);}
 
             /***************************Get the player input - do the thing****************************/
-            String command = game.playerInput.nextLine(); //Direction chosen by the player
+            String command = playerInput.nextLine(); //Direction chosen by the player
             String[] spCommand = command.split(" "); //Parse out the user input
             if (spCommand[0].equalsIgnoreCase("N")) {
                 if (player1.getNorthRoom() == 0) { //If no room in that direction, don't allow player to travel
@@ -133,6 +133,8 @@ public class Game {
         }
 
     }
+
+    /***********************************************End Game Loop******************************************************/
 
     //Game loadGame = new Game(Enter save file); To be used in later game iterations
     private boolean menuOpen = true; //Keep track of if the menu is open or not
