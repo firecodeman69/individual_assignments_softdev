@@ -2,7 +2,7 @@
 What is considered to be a "lucky" number?
 7
 5
-The lucky number S____
+The lucky number S____ - typed as a number
 2
 What is 9 + 10?
 21
